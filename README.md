@@ -1,5 +1,4 @@
-## 2020 Democratic Primaries and the Media
-## Exploring Gender Bias in the Discourse Around Presidential Candidates
+## 2020 Democratic Primaries and the Media: Exploring Gender Bias in the Discourse Around Presidential Candidates
 ### Diving into the Digital Public Space: Final Project (Sciences Po, Paris)
 
 This repository contains the following files:
