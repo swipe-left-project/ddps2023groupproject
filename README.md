@@ -1,12 +1,11 @@
 ## 2020 Democratic Primaries and the Media
-### Exploring Gender Bias in the Discourse Around Presidential Candidates
-#### Diving into the Digital Public Space: Final Project
-#### Sciences Po, Paris
+## Exploring Gender Bias in the Discourse Around Presidential Candidates
+### Diving into the Digital Public Space: Final Project (Sciences Po, Paris)
 
 This repository contains the following files:
 * The final project report (pdf): **report.pdf**
 * The Twitter folder **twitter**:
-	* Folder **graphs** with all graphs (png) generated for sentiment analysis of tweets in order to provide all graphs not appearing in the final report
+	* Folder **graphs** with all graphs (png) generated for sentiment analysis of tweets in order to provide plots not appearing in the final report
 * The New York Times folder **nyt**:
 	* Code used to generate descriptive statistics and data visualizations for the NYT analysis (Rmd): **nyt_descriptive_statistics_and_visualizations.Rmd**
 
