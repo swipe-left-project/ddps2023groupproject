@@ -15,7 +15,7 @@ totals_articles
 
 ```{r}
 # Calculating sentiment means for each candidate
-sentiment_means <- ddps_nyt %>%
+sentiment_means <- nyt_final %>%
   group_by(candidate) %>%
   summarize(mean = mean(sentiment))
 
@@ -24,22 +24,22 @@ sentiment_means
 
 ```{r}
 # Generating sentiment plot
-sentiment_plot <- ggplot(data = ddps_nyt, aes(x = candidate, fill = factor(sentiment))) + geom_bar() + theme_classic() + xlab("Candidate") + ylab("Count") + labs(fill = guide_legend("Sentiment")) + labs(title = "The New York Times: Article Sentiment towards 2020 Democratic Candidates")
+sentiment_plot <- ggplot(data = nyt_final, aes(x = candidate, fill = factor(sentiment))) + geom_bar() + theme_classic() + xlab("Candidate") + ylab("Count") + labs(fill = guide_legend("Sentiment")) + labs(title = "The New York Times: Article Sentiment towards 2020 Democratic Candidates")
 sentiment_plot
 ```
 
 ```{r}
 # Recoding topics
-ddps_nyt_renamed <- ddps_nyt %>%
+nyt_final_renamed <- nyt_final %>%
     mutate(topic = recode(topic, background = "Policy/Background", election = "Election/Horse Race", endorsement = "Election/Horse Race", health = "Scandals/Personality Traits/Health", policy = "Policy/Background", record = "Policy/Background", scandal = "Scandals/Personality Traits/Health", traits = "Scandals/Personality Traits/Health"))
 ```
 
 ```{r}
 # Producing separate datasets
-biden <- filter(ddps_nyt_renamed, candidate == "Biden")
-klobuchar <- filter(ddps_nyt_renamed, candidate == "Klobuchar")
-sanders <- filter(ddps_nyt_renamed, candidate == "Sanders")
-warren <- filter(ddps_nyt_renamed, candidate == "Warren")
+biden <- filter(nyt_final_renamed, candidate == "Biden")
+klobuchar <- filter(nyt_final_renamed, candidate == "Klobuchar")
+sanders <- filter(nyt_final_renamed, candidate == "Sanders")
+warren <- filter(nyt_final_renamed, candidate == "Warren")
 ```
 
 ```{r}
@@ -80,7 +80,7 @@ warren_topics
 
 ```{r}
 # Generating topic plot
-topic_plot <- ggplot(data = ddps_nyt_renamed, aes(x = candidate, fill = factor(topic))) + geom_bar() + theme_classic() + xlab("Candidate") + ylab("Count") + labs(fill = guide_legend("Topic")) + labs(title = "The New York Times: 2020 Democratic Candidates Article Topics")
+topic_plot <- ggplot(data = nyt_final_renamed, aes(x = candidate, fill = factor(topic))) + geom_bar() + theme_classic() + xlab("Candidate") + ylab("Count") + labs(fill = guide_legend("Topic")) + labs(title = "The New York Times: 2020 Democratic Candidates Article Topics")
 topic_plot
 ```
 
