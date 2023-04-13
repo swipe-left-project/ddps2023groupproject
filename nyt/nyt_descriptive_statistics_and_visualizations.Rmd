@@ -1,0 +1,86 @@
+```{r}
+# Loading libraries
+library(tidyverse)
+library(ggplot2)
+```
+
+```{r}
+# Calculating article totals for each candidate
+totals_articles <- nyt_final %>%
+  group_by(candidate) %>%
+  tally()
+
+totals_articles
+```
+
+```{r}
+# Calculating sentiment means for each candidate
+sentiment_means <- ddps_nyt %>%
+  group_by(candidate) %>%
+  summarize(mean = mean(sentiment))
+
+sentiment_means
+```
+
+```{r}
+# Generating sentiment plot
+sentiment_plot <- ggplot(data = ddps_nyt, aes(x = candidate, fill = factor(sentiment))) + geom_bar() + theme_classic() + xlab("Candidate") + ylab("Count") + labs(fill = guide_legend("Sentiment")) + labs(title = "The New York Times: Article Sentiment towards 2020 Democratic Candidates")
+sentiment_plot
+```
+
+```{r}
+# Recoding topics
+ddps_nyt_renamed <- ddps_nyt %>%
+    mutate(topic = recode(topic, background = "Policy/Background", election = "Election/Horse Race", endorsement = "Election/Horse Race", health = "Scandals/Personality Traits/Health", policy = "Policy/Background", record = "Policy/Background", scandal = "Scandals/Personality Traits/Health", traits = "Scandals/Personality Traits/Health"))
+```
+
+```{r}
+# Producing separate datasets
+biden <- filter(ddps_nyt_renamed, candidate == "Biden")
+klobuchar <- filter(ddps_nyt_renamed, candidate == "Klobuchar")
+sanders <- filter(ddps_nyt_renamed, candidate == "Sanders")
+warren <- filter(ddps_nyt_renamed, candidate == "Warren")
+```
+
+```{r}
+# Determining topics for Biden
+biden_topics <- biden %>%
+  group_by(topic) %>%
+  tally()
+
+biden_topics
+```
+
+```{r}
+# Determining topics for Klobuchar
+klobuchar_topics <- klobuchar %>%
+  group_by(topic) %>%
+  tally()
+
+klobuchar_topics
+```
+
+```{r}
+# Determining topics for Sanders
+sanders_topics <- sanders %>%
+  group_by(topic) %>%
+  tally()
+
+sanders_topics
+```
+
+```{r}
+# Determining topics for Warren
+warren_topics <- warren %>%
+  group_by(topic) %>%
+  tally()
+
+warren_topics
+```
+
+```{r}
+# Generating topic plot
+topic_plot <- ggplot(data = ddps_nyt_renamed, aes(x = candidate, fill = factor(topic))) + geom_bar() + theme_classic() + xlab("Candidate") + ylab("Count") + labs(fill = guide_legend("Topic")) + labs(title = "The New York Times: 2020 Democratic Candidates Article Topics")
+topic_plot
+```
+
